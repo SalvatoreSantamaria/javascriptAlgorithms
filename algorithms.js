@@ -45,13 +45,40 @@ function isPalindrome(str) {
 
 
   if (lettersArr.join('') === lettersArr.reverse().join('')) {
-    console.log(true);
+    return true;
   } else {
-    console.log(false);
+    return false;
   }
 }
 
-// isPalindrome("Madam I'm Adam"); 
-// isPalindrome("Race car");
-// isPalindrome('test words');
-isPalindrome();
+//let x = isPalindrome("Madam I'm Adam"); 
+//let x = isPalindrome("Race car");
+//let x = isPalindrome('test words');
+//console.log(x);
+
+/******************************************************************************/
+
+//Caesar Cipher
+
+//Notes: To Do
+
+/******************************************************************************/
+
+//Reverse Words: reverse every word in the string and return the new string
+
+function reverseWords(str) {
+  let wordsArr = str.split(' '); //split it to make it an array
+  let reversedWordsArray = [];
+
+  wordsArr.forEach(word => { //for each item in the array
+    let reversedWord = '';
+    for (var i = word.length - 1; i >= 0; i--) { //looping thru each array element backwards, and then adding each letter to the string reversedWord
+      reversedWord += word[i];
+    } 
+    reversedWordsArray.push(reversedWord); //push reversedWord into the new array
+  })
+  return reversedWordsArray.join(" ")//join to make a string again
+}
+
+// let x = reverseWords("Here are some test words")
+// console.log(x);

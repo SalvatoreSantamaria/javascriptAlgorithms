@@ -58,9 +58,35 @@ function isPalindrome(str) {
 
 /******************************************************************************/
 
-//Caesar Cipher
+//Caesar Cipher: take in two parameters, shift every letter in string forward by the number paramater
 
-//Notes: To Do
+function caesarCipher(str,num) {
+  num = num % 26; // in case number is 300, -27, etc
+  var lowerCaseString = str.toLowerCase();
+  var alphabet = 'abcdefghijklmnopqrstuvwxyz'.split(''); //create array with every letter of the alphabet
+  var newString = '';
+  
+  for (var i = 0; i < lowerCaseString.length; i++) {
+    var currentLetter = lowerCaseString[i];
+    if (currentLetter === ' ') { // if it's a space character, add it to the string
+      newString += currentLetter;
+      continue; // moves for loop onto new iteration, without doing anything else below
+    }
+    var currentIndex = alphabet.indexOf(currentLetter); // where the current letter is in the alphabet array
+    var newIndex = currentIndex + num; //index of new letter in alphabet array
+    if (newIndex > 25) newIndex = newIndex - 26; // // in case letter is y or z loop back at the front of the alphabet
+    if (newIndex < 0) newIndex = 26 + newIndex; // if a negative number is passed into the algorithm
+    if (str[i] === str[i].toUpperCase()) {
+      newString += alphabet[newIndex].toUpperCase(); //add the uppercase elements back in
+    }
+    else newString += alphabet[newIndex]; // this is the shifted letter
+  };
+  
+  return newString;
+}
+
+let x = caesarCipher('Zoo Keeper', 2)
+console.log(x);
 
 /******************************************************************************/
 
@@ -191,8 +217,8 @@ function twoSum(numArray, sum) {
   return pairs;
 }
 
-let x = twoSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
-console.log(x);
+// let x = twoSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+// console.log(x);
 
 /******************************************************************************/
 

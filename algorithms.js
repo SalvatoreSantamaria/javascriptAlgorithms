@@ -96,13 +96,75 @@ function reverseArrayInPlace(arr) {
   return arr;
 }
 
-let x = reverseArrayInPlace(['a', 'b', 'c', 'd', 'e', 'f'])
-console.log(x)
+// let x = reverseArrayInPlace(['a', 'b', 'c', 'd', 'e', 'f'])
+// console.log(x)
 /******************************************************************************/
 
-//mean Median Mode
+//Mean Median Mode: Take in array and return mean, median, and mode as properties of an object
 
-//Notes:
+function meanMedianMode(array) {
+  return {
+    mean: getMean(array),
+    median: getMedian(array),
+    mode: getMode(array)
+  }
+}
+ 
+function getMean(array) {
+  var sum = 0;
+  
+  array.forEach(num => {
+    sum += num;
+  });
+  
+  var mean = sum / array.length;
+  return mean;
+}
+ 
+function getMedian(array) {
+  array.sort(function (a, b) { return a - b });
+  var median;
+
+  if (array.length % 2 !== 0) { //if array has odd number of elements
+    median = array[Math.floor(array.length / 2)] //this is the element in the middle index
+  }
+  else { // grab two middle elements of the array
+    var mid1 = array[(array.length / 2) - 1]
+    var mid2 = array[(array.length / 2)]
+    median = (mid1 + mid2) / 2; //average out the two middle array elements
+  }
+  return median;
+}
+
+function getMode(array) {//mode is the number that appears the most
+  var modeObj = {};// hashtable
+  
+  // create modeObj
+  array.forEach(num => {
+    if (!modeObj[num])// if this number does not exist on modeObj as a property
+      modeObj[num] = 0; 
+    modeObj[num]++; // increment value by 1
+  });
+  
+  // create array of mode/s 
+  var maxFrequency = 0;
+  var modes = [];
+  for (var num in modeObj) { 
+    if (modeObj[num] > maxFrequency) {    // check to see if freq of that number is greater than maxFrequency
+      modes = [num];
+      maxFrequency = modeObj[num];
+    }
+    else if (modeObj[num] === maxFrequency) modes.push(num);
+  }
+  // if every value appears same amount of times 
+  if (modes.length === Object.keys(modeObj).length) //give us the the value of howmany properties are on the modeObj
+    modes = [];
+  return modes;
+}
+
+
+let x = meanMedianMode([10, 10,23,10,23,9]);
+console.log(x);
 
 /******************************************************************************/
 
@@ -171,4 +233,3 @@ console.log(x)
 //Notes:
 
 /******************************************************************************/
-

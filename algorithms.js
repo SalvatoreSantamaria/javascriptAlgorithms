@@ -85,8 +85,8 @@ function caesarCipher(str,num) {
   return newString;
 }
 
-let x = caesarCipher('Zoo Keeper', 2)
-console.log(x);
+// let x = caesarCipher('Zoo Keeper', 2)
+// console.log(x);
 
 /******************************************************************************/
 
@@ -228,6 +228,22 @@ function twoSum(numArray, sum) {
 
 /******************************************************************************/
 
+//Fibonacci: return the position of the input number in the Fibonacci sequence
+
+function fibonacci(position) {
+  if (position < 3) {
+    return 1;
+  } else {
+    return fibonacci(position - 1) + fibonacci(position - 2) //each of these functions we are calling here will keep calling itself until it reaches the base case, in which both previous numbers are 1 and 1
+  }
+}
+
+let x = fibonacci(6);
+console.log(x);
+
+
+/******************************************************************************/
+
 //Memoized Fibonacci
 
 //Notes:
@@ -240,9 +256,23 @@ function twoSum(numArray, sum) {
 
 /******************************************************************************/
 
-//Bubble Sort
+//Bubble Sort: return array sorted with bubble sort
 
-//Notes:
+function bubbleSort(array) { 
+  for (var i = array.length; i > 0; i--) { //created array.length - 1 loops for us, and loops backwards
+    for (var j = 0; j < i; j++) {  //loop thru whole array and on each loop stop 1 shorter than the previous loop, because the largest element has 'bubbled' up already
+      if (array[j] > array[j + 1]) {
+        var temp = array[j]; //switch elements if neccessary
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+  return array;
+}
+
+// let x = bubbleSort([5, 3, 2, 1, 4])
+// console.log(x);
 
 /******************************************************************************/
 

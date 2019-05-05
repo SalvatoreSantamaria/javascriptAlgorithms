@@ -163,14 +163,36 @@ function getMode(array) {//mode is the number that appears the most
 }
 
 
-let x = meanMedianMode([10, 10,23,10,23,9]);
-console.log(x);
+// let x = meanMedianMode([10,10,23,10,23,9]);
+// console.log(x);
 
 /******************************************************************************/
 
-//Two Sum
+// Two Sum: return every pair of numbers from 'numArray' that adds up to the 'sum'
+// this builds out in O(n) time complexity
+// Rules:
+// 1. Result should be an array of arrays
+// 2. Any number in the 'numArray' can be used in multiple pairs
 
-//Notes:
+function twoSum(numArray, sum) {
+  var pairs = [];
+  var hashtable = []; //using array as a hashtable. we are pushing every element we iterate through into hastable
+
+  for (var i = 0; i < numArray.length; i++) {
+    var currNum = numArray[i]; //ie 3
+    var counterpart = sum - currNum; // ie 10 - 3, so counterpart = 7;
+    //check hashtable to see if counterpart exists 
+    if (hashtable.indexOf(counterpart) != -1) { // if counterpart( ie, the missing value in the sum) exists in hashtable. if it does exist, then we already know that we iterated through that number in the array. We can therefore take these two numbers as a pair and push them into the array. ie, if hashtable.indexOf(7) != -1
+      pairs.push([ currNum, counterpart]) //ie pairs.push(3, 7)
+    }
+    //push current number into hashtable no matter what
+    hashtable.push(currNum)
+  }
+  return pairs;
+}
+
+let x = twoSum([1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+console.log(x);
 
 /******************************************************************************/
 
